@@ -19,6 +19,8 @@ import { faCircleQuestion } from '@fortawesome/free-regular-svg-icons';
 import { BoxIcon, ChangeIcon, SentIcon } from '~/components/Icons';
 import Images from '~/components/Images';
 import Search from '../Search';
+import { Link } from 'react-router-dom';
+import routerConfig from '~/components/config/router';
 
 const cx = classNames.bind(styles);
 
@@ -27,8 +29,44 @@ const MENU_ITEMS = [
         icon: <FontAwesomeIcon icon={faLanguage} />,
         title: 'English',
         children: {
-            title: 'Language',
+            title: 'Languages',
             data: [
+                {
+                    code: 'en',
+                    title: 'English',
+                },
+                {
+                    code: 'vi',
+                    title: 'VietNamese',
+                },
+                {
+                    code: 'chn',
+                    title: 'China',
+                },
+                {
+                    code: 'en',
+                    title: 'English',
+                },
+                {
+                    code: 'vi',
+                    title: 'VietNamese',
+                },
+                {
+                    code: 'chn',
+                    title: 'China',
+                },
+                {
+                    code: 'en',
+                    title: 'English',
+                },
+                {
+                    code: 'vi',
+                    title: 'VietNamese',
+                },
+                {
+                    code: 'chn',
+                    title: 'China',
+                },
                 {
                     code: 'en',
                     title: 'English',
@@ -91,7 +129,9 @@ function Header() {
             <div className={cx('content')}>
                 {/* logo */}
                 <div className={cx('logo')}>
-                    <img src={image.logo} alt=""></img>
+                    <Link to={routerConfig.Home}>
+                        <img src={image.logo} alt=""></img>
+                    </Link>
                 </div>
                 {/* search */}
                 <Search />

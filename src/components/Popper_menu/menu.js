@@ -5,10 +5,11 @@ import { wrapper as PopperWrapper } from '~/components/Popper';
 import MenuItem from './menuItem';
 import HeaderMenu from './Header';
 import { useState } from 'react';
+import PropTypes from 'prop-types';
 
 const defaultValue = () => {};
 
-function Menu({ children, items = [], onChange = defaultValue }) {
+function Menu({ children, items = [], onChange = defaultValue, hideOnClick = false }) {
     const cx = classNames.bind(styles);
     const [history, setHistory] = useState([{ data: items }]);
     const currrent = history[history.length - 1];
@@ -35,18 +36,19 @@ function Menu({ children, items = [], onChange = defaultValue }) {
             delay={[0, 500]}
             interactive
             placement="bottom-end"
+            hideOnClick={hideOnClick}
             render={(attrs) => (
                 <div className={cx('content')} tabIndex="-1" {...attrs}>
                     <PopperWrapper className={cx('bg_menu')}>
                         {history.length > 1 && (
                             <HeaderMenu
-                                title="Language"
+                                title={currrent.title}
                                 onBack={() => {
                                     setHistory((prev) => prev.slice(0, prev.length - 1));
                                 }}
                             />
                         )}
-                        {renderItems()}
+                        <div className={cx('menuScroll')}>{renderItems()}</div>
                     </PopperWrapper>
                 </div>
             )}
@@ -56,5 +58,12 @@ function Menu({ children, items = [], onChange = defaultValue }) {
         </Tippy>
     );
 }
+
+Menu.prototype = {
+    children: PropTypes.node.isRequired,
+    items: PropTypes.array,
+    onChange: PropTypes.bool,
+    hideOnClick: PropTypes.func,
+};
 
 export default Menu;

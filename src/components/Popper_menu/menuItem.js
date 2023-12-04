@@ -1,6 +1,7 @@
 import Button from '~/components/Button';
 import classNames from 'classnames/bind';
 import styles from './menu.module.scss';
+import PropTypes from 'prop-types';
 
 function MenuItem({ data, onClick }) {
     const cx = classNames.bind(styles);

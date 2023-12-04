@@ -3,23 +3,24 @@ import Following from '~/Pages/Following';
 import Upload from '~/Pages/Upload';
 import Profile from '~/Pages/Profile';
 import { HeaderOnly } from '~/components/Layout';
+import routerConfig from '~/components/config/router';
 
 const publicRoutes = [
     {
-        path: '/',
+        path: routerConfig.Home,
         component: Home,
     },
     {
-        path: '/@:nickname',
+        path: routerConfig.Profile,
         component: Profile,
     },
     {
-        path: '/following',
+        path: routerConfig.Following,
         component: Following,
         layout: null,
     },
     {
-        path: '/upload',
+        path: routerConfig.Upload,
         component: Upload,
         layout: HeaderOnly,
     },
